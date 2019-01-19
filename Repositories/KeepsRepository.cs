@@ -21,7 +21,7 @@ namespace keepr.Repositories
     public IEnumerable<Keep> GetAllKeeps()
     {
       // think i will have to address this function not sure how to write the private part
-      return _db.Query<Keep>("SELECT * FROM burger WHERE private = false");
+      return _db.Query<Keep>("SELECT * FROM keeps WHERE isprivate = 0");
     }
 
 
@@ -36,7 +36,8 @@ namespace keepr.Repositories
     public Keep AddKeep(Keep keep)
     {
       int id = _db.ExecuteScalar<int>(@"
-      INSERT INTO keep(name, description, private, userId, img, views, shares, keeps) Values (@Name, @Description, @Private, @UserId @Img, @Views, @Shares, @Keeps);
+      INSERT INTO keeps(name, description, UserId, isPrivate, img, views, shares, keeps)
+       Values (@Name, @Description, @UserId, @IsPrivate, @Img, @Views, @Shares, @Keeps);
       SELECT LAST_INSERT_ID()", keep);
       if (id == 0) return null;
       keep.Id = id;
@@ -45,9 +46,10 @@ namespace keepr.Repositories
 
 
 
-    public bool DeleteKeep(int id)
+    public bool DeleteKeep(string UserId, int id)
     {
-      _db.Execute("Delete FROM Keep WHERE ID = @Id", new { ID = id });
+
+      _db.Execute("Delete FROM Keep WHERE ID = @Id AND UserId = @UserId", new { ID = id, UserId });
       return true;
     }
 

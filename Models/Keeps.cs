@@ -19,7 +19,7 @@ namespace keepr.Models
     public bool IsPrivate { get; set; }
 
     [Required]
-    internal string UserId { get; set; }
+    public string UserId { get; set; }
 
     public int Views { get; set; }
 

@@ -40,7 +40,13 @@ namespace Keepr.Controllers
 
 
 
+
+
     // get all keeps by vault id
+
+
+    // put request to increase view keeps and save counts
+
 
 
 
@@ -60,17 +66,14 @@ namespace Keepr.Controllers
 
 
 
-
-
     // add a keep
 
     [HttpPost]
     public ActionResult<Keep> Post([FromBody] Keep keep)
     {
+      keep.UserId = HttpContext.User.Identity.Name;
       return Created("/api/keeps", _keepRepo.AddKeep(keep));
     }
-
-
 
 
     // delete a keep
@@ -79,7 +82,8 @@ namespace Keepr.Controllers
     [HttpDelete("{id}")]
     public ActionResult<Keep> Delete(int id)
     {
-      if (_keepRepo.DeleteKeep(id))
+      var CurrentUserId = HttpContext.User.Identity.Name;
+      if (_keepRepo.DeleteKeep(CurrentUserId, id))
       {
         return Ok("Success");
       }
