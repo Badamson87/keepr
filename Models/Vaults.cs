@@ -6,21 +6,21 @@ using System.Security.Claims;
 namespace keepr.Models
 {
 
-  public class Vaults
+  public class Vault
   {
     [Required]
-    public string Id { get; set; }
+    public int Id { get; set; }
 
     [Required]
-    public string Title { get; set; }
+    public string Name { get; set; }
 
     public string Description { get; set; }
 
 
     [Required]
-    internal string UserId { get; set; }
+    public string UserId { get; set; }
 
-    public bool IsPrivate { get; set; }
+    // public bool IsPrivate { get; set; }
 
 
 
