@@ -29,7 +29,7 @@
             </li>
           </ul>
           <span class="navbar-text">
-            <p>You Keep What You Take</p>
+            <p>Finders Keepers</p>
           </span>
         </div>
       </nav>

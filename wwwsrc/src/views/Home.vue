@@ -2,11 +2,11 @@
   <div class="home container-fluid">
 
     <div class="row">
-      <h1>Welcome Home</h1>
+      <div class="col">
+        <h1 Class="justify-content-center pt-3 text-warning">You Keep What You Find</h1>
 
+      </div>
     </div>
-
-
 
     <!-- Vaults here im thinking -->
     <div class="row">

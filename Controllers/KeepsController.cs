@@ -16,8 +16,6 @@ namespace Keepr.Controllers
   {
     private readonly KeepRepository _keepRepo;
 
-    public IEnumerable<Keep> Keeps { get; set; }
-
 
     public KeepsController(KeepRepository keepRepo)
     {
@@ -28,7 +26,6 @@ namespace Keepr.Controllers
 
     // get all keeps that are not private
     [HttpGet]
-
     public IEnumerable<Keep> GetKeeps()
     {
       return _keepRepo.GetAllKeeps();
@@ -45,13 +42,14 @@ namespace Keepr.Controllers
     // get all keeps by vault id
 
 
+
+
     // put request to increase view keeps and save counts
 
 
 
 
     //get single keep by id
-
     [HttpGet("{id}")]
     public ActionResult<Keep> GetAction(int id)
     {
@@ -67,7 +65,7 @@ namespace Keepr.Controllers
 
 
     // add a keep
-
+    [Authorize]
     [HttpPost]
     public ActionResult<Keep> Post([FromBody] Keep keep)
     {
@@ -78,7 +76,7 @@ namespace Keepr.Controllers
 
     // delete a keep
 
-
+    [Authorize]
     [HttpDelete("{id}")]
     public ActionResult<Keep> Delete(int id)
     {

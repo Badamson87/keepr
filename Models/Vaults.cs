@@ -16,8 +16,6 @@ namespace keepr.Models
 
     public string Description { get; set; }
 
-
-    [Required]
     public string UserId { get; set; }
 
     // public bool IsPrivate { get; set; }

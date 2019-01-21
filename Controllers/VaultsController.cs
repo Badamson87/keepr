@@ -11,14 +11,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Keepr.Controllers
 {
-  [Route("api/[Controller")]
+  [Route("api/[controller]")]
   [ApiController]
 
   public class VaultsController : ControllerBase
   {
     private readonly VaultRepository _vaultRepo;
 
-    public IEnumerable<Vault> Vaults { get; set; }
 
     public VaultsController(VaultRepository vaultRepo)
     {
@@ -31,6 +30,7 @@ namespace Keepr.Controllers
 
 
     // add a vault
+    [Authorize]
     [HttpPost]
     public ActionResult<Vault> Post([FromBody] Vault vault)
     {
@@ -41,7 +41,7 @@ namespace Keepr.Controllers
 
 
     // delete a vault
-
+    [Authorize]
     [HttpDelete("{id}")]
     public ActionResult<Vault> Delete(int id)
     {
