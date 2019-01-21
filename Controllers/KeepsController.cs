@@ -34,12 +34,35 @@ namespace Keepr.Controllers
 
 
     //get all keeps by user id
+    [Authorize]
+    [HttpGet("{all}")]
 
-
+    public ActionResult<IEnumerable<Keep>> GetKeepsByUserId()
+    {
+      string userId = HttpContext.User.Identity.Name;
+      IEnumerable<Keep> result = _keepRepo.GetAllKeepByUserId(userId);
+      if (result != null)
+      {
+        return Ok(result);
+      }
+      return NotFound();
+    }
 
 
 
     // put request to increase view keeps and save counts
+
+    [HttpPut("{id}")]
+    public ActionResult<Keep> Put(int id, [FromBody] Keep keep)
+    {
+      Keep result = _keepRepo.EditKeep(id, keep);
+      if (result != null)
+      {
+        return result;
+      }
+      return NotFound();
+    }
+
 
 
 

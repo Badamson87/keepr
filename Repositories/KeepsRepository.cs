@@ -24,6 +24,34 @@ namespace keepr.Repositories
       return _db.Query<Keep>("SELECT * FROM keeps WHERE isprivate = 0");
     }
 
+    public IEnumerable<Keep> GetAllKeepByUserId(string userId)
+    {
+      return _db.Query<Keep>($"SELECT * FROM Keeps WHERE userId = @userId", new { userId });
+    }
+
+
+    // Edit a keep
+
+    public Keep EditKeep(int id, Keep newKeep)
+    {
+      newKeep.Id = id;
+      try
+      {
+        return _db.QueryFirstOrDefault<Keep>($@" UPDATE Keep SET id = @id
+      Views = @Views AND,
+      Shares = @Shares AND,
+      Keeps = @Keeps,
+      id = {id};
+      SELECT * FROM Keeps WHERE Id = @Id;
+      ", newKeep);
+      }
+      catch (Exception ex)
+      {
+        Console.WriteLine(ex);
+        return null;
+      }
+    }
+
 
 
     // get keep by keep id
