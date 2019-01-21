@@ -39,11 +39,6 @@ namespace Keepr.Controllers
 
 
 
-    // get all keeps by vault id
-
-
-
-
     // put request to increase view keeps and save counts
 
 
