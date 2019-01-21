@@ -26,7 +26,7 @@ namespace Keepr.Controllers
 
     // get all keeps that are not private
     [HttpGet]
-    public IEnumerable<Keep> GetKeeps()
+    public IEnumerable<Keep> GetAllKeeps()
     {
       return _keepRepo.GetAllKeeps();
     }

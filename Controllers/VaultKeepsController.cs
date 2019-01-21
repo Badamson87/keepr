@@ -26,13 +26,53 @@ namespace Keepr.Controllers
 
 
     // add a keep by vault id
+    [Authorize]
+    [HttpPost]
+
+    public ActionResult<VaultKeeps> Post([FromBody] VaultKeeps vaultKeep)
+    {
+      vaultKeep.UserId = HttpContext.User.Identity.Name;
+      VaultKeeps result = _vkRepo.AddVaultKeeps(vaultKeep);
+      return Created("/api/vaultKeeps/" + result.Id, result);
+    }
 
 
 
-    // Delete a keep by vault it
+
+    // Delete a vaultKeep
+    [Authorize]
+    [HttpDelete("{id}")]
+
+    public ActionResult<VaultKeeps> Delete(int id)
+    {
+      string userId = HttpContext.User.Identity.Name;
+      if (_vkRepo.DeleteVaultKeeps(userId, id))
+      {
+        return Ok("success");
+      }
+      return NotFound("No Keep FOund");
+
+    }
+
+
+
+
+
 
 
     // get Keeps by vault id
+    [Authorize]
+    [HttpGet("{vaultId}")]
+    public ActionResult<IEnumerable<Keep>> vaultKeeps(int vaultId)
+    {
+      string UserId = HttpContext.User.Identity.Name;
+      IEnumerable<Keep> result = _vkRepo.GetAllKeepsByVaultId(UserId, vaultId);
+      if (result != null)
+      {
+        return Ok(result);
+      }
+      return NotFound();
+    }
 
 
 

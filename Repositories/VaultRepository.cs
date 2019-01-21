@@ -25,7 +25,7 @@ namespace keepr.Repositories
     {
       int id = _db.ExecuteScalar<int>(@"
       INSERT INTO vaults(name, description, userId) 
-      Values(@Name, @Description, @UserId);
+      VALUES(@Name, @Description, @UserId);
       SELECT LAST_INSERT_ID()", vault);
       if (id == 0) return null;
       vault.Id = id;
