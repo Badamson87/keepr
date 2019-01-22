@@ -44,7 +44,6 @@
 
     mounted() {
       return this.$store.state.activeKeep || {}
-      // this.$store.dispatch(getKeepById(id))
 
       // this.$store.dispatch("getVaults")
 

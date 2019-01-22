@@ -3,8 +3,7 @@
 
     <div class="row">
       <div class="col-12">
-        <h1 Class="justify-content-center p-3 text-warning">You Keep What You Find</h1>
-
+        <h1 Class="justify-content-center p-3 text-warning">Keep What You Will</h1>
       </div>
     </div>
 
@@ -18,7 +17,9 @@
               <router-link :to="{name: 'keep', params: {keepId: keep.id}}">
                 <p class="card-text">{{keep.name}}</p>
               </router-link>
-              <p class="card-text">{{keep.description}}</p>
+              <i class="fas fa-eye icons"></i>: {{keep.views}}
+              <i class="fas fa-share icons"></i>: {{keep.shares}}
+              <i class="fas fa-dungeon icons"></i>: {{keep.keeps}}
             </div>
           </div>
         </div>

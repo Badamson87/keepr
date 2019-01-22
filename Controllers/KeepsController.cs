@@ -35,7 +35,7 @@ namespace Keepr.Controllers
 
     //get all keeps by user id
     [Authorize]
-    [HttpGet("{all}")]
+    [HttpGet("all")]
 
     public ActionResult<IEnumerable<Keep>> GetKeepsByUserId()
     {
