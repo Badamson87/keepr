@@ -21,7 +21,7 @@ export default new Vuex.Store({
   state: {
     user: {},
     keeps: [],
-    keep: {}
+    activeKeep: {}
   },
   mutations: {
     setUser(state, user) {
@@ -31,7 +31,7 @@ export default new Vuex.Store({
       state.keeps = keeps
     },
     setActiveKeep(state, keep) {
-      state.keep = keep
+      state.activeKeep = keep
     }
 
   },
@@ -66,13 +66,26 @@ export default new Vuex.Store({
           console.log('Login Failed')
         })
     },
+
+
+
+    // keep routes
+
     getAllKeeps({ commit, dispatch }) {
       api.get('keeps/')
         .then(res => {
           console.log(res)
           commit('setKeeps', res.data)
         })
+    },
+    getKeepById({ commit, dispatch }, keep) {
+      debugger
+      api.get('keeps' + keep.id)
+        .then(res => {
+          commit('setKeep', res.data)
+        })
     }
+
 
 
 

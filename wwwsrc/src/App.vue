@@ -9,23 +9,19 @@
 
 
     <div>
-
       <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-        <a class="navbar-brand" href="#">Keepr</a>
+        <a class="navbar-brand" href="/">Keepr</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
           aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+              <a class="nav-link" href="#/dash">User</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">User</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">login</a>
+              <a class="nav-link" href="#/login">login</a>
             </li>
           </ul>
           <span class="navbar-text">
@@ -33,31 +29,8 @@
           </span>
         </div>
       </nav>
-
-
-
-
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <router-view />
-
-
-
-
   </div>
 </template>
 

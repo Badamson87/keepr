@@ -19,7 +19,8 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      props: true
     },
     {
       path: '/login',
@@ -34,7 +35,8 @@ export default new Router({
     {
       path: '/keep',
       name: 'keep',
-      component: Keep
+      component: Keep,
+      props: true
     },
     {
       path: '/vault',

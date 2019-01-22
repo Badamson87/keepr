@@ -13,9 +13,9 @@
       <div class="col allKeeps">
         <div v-for="keep in keeps">
           <div class="card m-2" style="width: 14rem;">
-            <img src="keep.img" class="card-img-top">
+            <img class="card-img-top" :src="keep.img">
             <div class="card-body" @click="setActiveKeep(keep)">
-              <router-link :to="{name: 'keep', params: {keepId: keep._id, keep: keep}}">
+              <router-link :to="{name: 'keep', params: {keepId: keep.id}}">
                 <p class="card-text">{{keep.name}}</p>
               </router-link>
               <p class="card-text">{{keep.description}}</p>
@@ -40,7 +40,7 @@
     },
     methods: {
       setActiveKeep(keep) {
-        this.$store.commit('setKeep', keep)
+        this.$store.commit('setActiveKeep', keep)
       }
     }
 
