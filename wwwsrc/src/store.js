@@ -20,7 +20,8 @@ let api = Axios.create({
 export default new Vuex.Store({
   state: {
     user: {},
-    keeps: []
+    keeps: [],
+    keep: {}
   },
   mutations: {
     setUser(state, user) {
@@ -28,7 +29,11 @@ export default new Vuex.Store({
     },
     setKeeps(state, keeps) {
       state.keeps = keeps
+    },
+    setActiveKeep(state, keep) {
+      state.keep = keep
     }
+
   },
   actions: {
     register({ commit, dispatch }, newUser) {

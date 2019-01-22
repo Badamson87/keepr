@@ -38,10 +38,11 @@ namespace keepr.Repositories
       try
       {
         return _db.QueryFirstOrDefault<Keep>($@"
-     UPDATE Keep SET
-      Views = @Views,
-      Shares = @Shares,
-      Keeps = @Keeps,
+      UPDATE Keeps 
+      SET
+        Views = @Views,
+        Shares = @Shares,
+        Keeps = @Keeps
       WHERE Id = {id};
       SELECT * FROM Keeps WHERE Id = {id};", newKeep);
       }
