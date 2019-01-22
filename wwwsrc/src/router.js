@@ -4,6 +4,13 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 // @ts-ignore
 import Login from './views/Login.vue'
+// @ts-ignore
+import Dash from './views/Dash.vue'
+// @ts-ignore
+import Keep from './views/Keep.vue'
+// @ts-ignore
+import Vault from './views/Vault.vue'
+
 
 Vue.use(Router)
 
@@ -18,6 +25,21 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
-    }
+    },
+    {
+      path: '/dash',
+      name: 'dash',
+      component: Dash
+    },
+    {
+      path: '/keep',
+      name: 'keep',
+      component: Keep
+    },
+    {
+      path: '/vault',
+      name: 'vault',
+      component: Vault
+    },
   ]
 })

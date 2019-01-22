@@ -10,8 +10,19 @@
 
     <!-- Vaults here im thinking -->
     <div class="row">
+      <div class="col">
+        <div v-for="keep in keeps">
+          <div class="card">
+            <img class="" :src="keep.img">
+            <p class="textSpace">{{keep.name}}</p>
 
 
+          </div>
+
+        </div>
+
+
+      </div>
     </div>
 
   </div>
@@ -21,12 +32,13 @@
   export default {
     name: "home",
     mounted() {
-      //blocks users not logged in
-      // if (!this.$store.state.user.id) {
-      //   this.$router.push({ name: "login" });
-      // }
-
       this.$store.dispatch("getAllKeeps")
     },
+    computed: {
+      keeps() {
+        return this.$store.state.keeps
+      },
+    }
+
   };
 </script>

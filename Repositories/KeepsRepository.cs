@@ -37,13 +37,13 @@ namespace keepr.Repositories
       newKeep.Id = id;
       try
       {
-        return _db.QueryFirstOrDefault<Keep>($@" UPDATE Keep SET id = @id
-      Views = @Views AND,
-      Shares = @Shares AND,
+        return _db.QueryFirstOrDefault<Keep>($@"
+     UPDATE Keep SET
+      Views = @Views,
+      Shares = @Shares,
       Keeps = @Keeps,
-      id = {id};
-      SELECT * FROM Keeps WHERE Id = @Id;
-      ", newKeep);
+      WHERE Id = {id};
+      SELECT * FROM Keeps WHERE Id = {id};", newKeep);
       }
       catch (Exception ex)
       {
