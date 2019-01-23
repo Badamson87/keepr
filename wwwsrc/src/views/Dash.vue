@@ -98,7 +98,7 @@
                 <p class="card-text">{{vault.description}}</p>
               </div>
               <div>
-                <i class="fas fa-bomb"></i>
+                <i class="fas fa-bomb" @click="deleteVault(vault.id)"></i>
               </div>
             </div>
           </div>
@@ -181,6 +181,9 @@
       },
       deleteKeep(keepId) {
         this.$store.dispatch('deleteKeep', keepId)
+      },
+      deleteVault(vaultId) {
+        this.$store.dispatch('deleteVault', vaultId)
       }
 
 

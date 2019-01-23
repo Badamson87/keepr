@@ -116,10 +116,6 @@ export default new Vuex.Store({
     },
 
 
-
-
-
-
     // Vault routes
 
 
@@ -134,10 +130,16 @@ export default new Vuex.Store({
     createVault({ commit, dispatch }, formData) {
       api.post('vaults', formData)
         .then(res => {
-          console.log(res.data)
           commit('setVaults', res.data)
           dispatch('getVaultsByUser')
         })
+    },
+    deleteVault({ commit, dispatch }, vaultId) {
+      api.delete('vaults/' + vaultId)
+        .then(res => {
+          dispatch('getVaultsByUser')
+        })
+        .catch(e => console.error(e))
     }
 
 
