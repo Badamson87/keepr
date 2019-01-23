@@ -7,7 +7,7 @@
       </div>
     </div>
 
-    <!-- Vaults here im thinking -->
+    <!-- Vaults here  -->
     <div class="row">
       <div class="col allKeeps">
         <div v-for="keep in keeps">

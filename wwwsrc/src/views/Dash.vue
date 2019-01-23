@@ -74,9 +74,7 @@
             <div class="card m-2" style="width: 14rem;">
               <img class="card-img-top" :src="keep.img">
               <div class="card-body" @click="setActiveKeep(keep)">
-                <router-link :to="{name: 'keep', params: {keepId: keep.id}}">
-                  <p class="card-text">{{keep.name}}</p>
-                </router-link>
+                <p class="card-text">{{keep.name}}</p>
                 <i class="fas fa-eye icons"></i>: {{keep.views}}
                 <i class="fas fa-share icons"></i>: {{keep.shares}}
                 <i class="fas fa-dungeon icons"></i>: {{keep.keeps}}
@@ -94,7 +92,9 @@
             <div class="card m-3" style="width: 14rem;">
               <img src="../assets/img/stonedoor1.jpg" class="card-img-top">
               <div class="card-body">
-                <h3 class="card-title">{{vault.name}}</h3>
+                <routerlink @click="setActiveVault(vault.id)">
+                  <h3 class="card-title">{{vault.name}}</h3>
+                </routerlink>
                 <p class="card-text">{{vault.description}}</p>
               </div>
               <div>
@@ -184,6 +184,12 @@
       },
       deleteVault(vaultId) {
         this.$store.dispatch('deleteVault', vaultId)
+      },
+      setActiveVault(vaultId) {
+        this.$store.dispatch('setActiveVault', vaultId)
+      },
+      setActiveKeep(keepId) {
+        this.$store.dispatch('getKeepById', keepId)
       }
 
 

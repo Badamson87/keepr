@@ -58,7 +58,7 @@ namespace keepr.Repositories
     // get keep by keep id
     public Keep GetKeepById(int id)
     {
-      return _db.QueryFirstOrDefault<Keep>($"SELECT * FROM keep WHERE id = @id", new { id });
+      return _db.QueryFirstOrDefault<Keep>($"SELECT * FROM keeps WHERE id = @id", new { id });
     }
 
 
