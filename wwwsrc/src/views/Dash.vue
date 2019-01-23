@@ -1,49 +1,82 @@
 <template>
   <div class="home container-fluid">
 
+    <!-- Welcome message -->
+
     <div class="row">
       <div class="col">
         <h1 Class="justify-content-center pt-3 text-warning">WELCOME TO YOUR USER DASH</h1>
       </div>
     </div>
 
-    <!-- Vaults here im thinking -->
+    <!-- prime relestate -->
+
     <div class="row">
       <div class="col-6">
-        <h4 class="text-warning m-3">Your Keeps</h4>
+        <h4 class="text-warning m-3">Keeps</h4>
         <img @click="showData('keep'), getKeepsByUser()" src="../assets/img/treasure2.jpg">
         <div>
           <button type="button" class="btn btn-outline-warning" @click="showForm('keep')">New Keep</button>
         </div>
       </div>
       <div>
-
       </div>
       <div class="col-6">
-        <h4 class="text-warning m-3">Your Vaults</h4>
+        <h4 class="text-warning m-3">Vaults</h4>
         <img @click="showData('vault'), getVaultByUser()" src="../assets/img/door1.jpg">
         <div>
           <button type="button" class="btn btn-outline-warning" @click="showForm('vault')">New Vault</button>
         </div>
       </div>
     </div>
+
+
+    <!-- forms for the new keep and vault -->
+
+    <!-- form for keep -->
     <row>
       <div class="col">
-        <!-- forums for the new items -->
         <div v-if="vaultForm" class="vaultform">
-          VAULT FORM
+          <h3 class="text-warning">Build Your Vault</h3>
+          <form>
+            <div class="form-group">
+              <input class="form-control" type="text" placeholder="Name">
+              <input class="form-control" type="text" placeholder="Description">
+              <button type="button" @click="showForm()" class="btn btn-primary m-3">Create</button>
+              <button type="button" @click="showForm()" class="btn btn-danger m-3">Close</button>
+
+            </div>
+          </form>
         </div>
+
+        <!-- form for new vault -->
+
         <div v-if="keepForm" class="keepform">
-          KEEP FORM
+          <h3 class="text-warning">Build Your Keep</h3>
+          <form>
+            <div class="form-group">
+              <input class="form-control m-2" type="text" placeholder="Name">
+              <input class="form-control m-2" type="text" placeholder="Description">
+              <input class="form-control m-2" type="text" placeholder="Image Url">
+              <input class="form-control m-2" type="checkbox">
+              <p class="text-warning">Keep For Yourself</p>
+
+              <!-- <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+              </label> -->
+
+              <button type="button" @click="showForm()" class="btn btn-primary m-3">Create</button>
+              <button type="button" @click="showForm()" class="btn btn-danger m-3">Close</button>
+
+
+            </div>
+          </form>
         </div>
       </div>
+      <!-- the keeps or vaults you own -->
     </row>
     <div class="col">
-      <!-- the keeps or vaults you own -->
       <div v-if="yourKeeps" class="yourKeeps">
-
-        YOUR KEEPS
-
         <div class="col allKeeps">
           <div v-for="keep in userKeeps">
             <div class="card m-2" style="width: 14rem;">
@@ -61,21 +94,15 @@
         </div>
       </div>
       <div v-if="yourVaults" class="yourVaults">
-        YOUR VAULTS
-        <div class="col">
+        <div class="col allKeeps">
           <div v-for="vault in userVaults">
-
-            <div class="card" style="width: 14rem;">
-              <!-- <img src="" class="card-img-top"> -->
+            <div class="card m-3" style="width: 14rem;">
+              <img src="../assets/img/stonedoor1.jpg" class="card-img-top">
               <div class="card-body">
-                <h5 class="card-title">{{vault.name}}</h5>
+                <h3 class="card-title">{{vault.name}}</h3>
                 <p class="card-text">{{vault.description}}</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
               </div>
             </div>
-
-
-
           </div>
         </div>
       </div>
@@ -144,3 +171,11 @@
     }
   };
 </script>
+
+
+<style>
+  .card {
+    color: gold;
+    background-color: black;
+  }
+</style>

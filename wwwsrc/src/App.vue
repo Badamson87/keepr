@@ -46,7 +46,7 @@
 
   body {
     background-image: fixed;
-    background-size: cover;
+    background-size: 100vw;
     background-image: url("assets/img/water1.jpg")
   }
 
