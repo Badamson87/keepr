@@ -40,11 +40,10 @@
           <h3 class="text-warning">Build Your Vault</h3>
           <form>
             <div class="form-group">
-              <input class="form-control" type="text" placeholder="Name">
-              <input class="form-control" type="text" placeholder="Description">
+              <input class="form-control" type="text" placeholder="Name" v-model="vaultFormData.name">
+              <input class="form-control" type="text" placeholder="Description" v-model="vaultFormData.description">
               <button type="button" @click="showForm()" class="btn btn-primary m-3">Create</button>
               <button type="button" @click="showForm()" class="btn btn-danger m-3">Close</button>
-
             </div>
           </form>
         </div>
@@ -53,22 +52,15 @@
 
         <div v-if="keepForm" class="keepform">
           <h3 class="text-warning">Build Your Keep</h3>
-          <form>
+          <form @submit.prevent="createKeep">
             <div class="form-group">
-              <input class="form-control m-2" type="text" placeholder="Name">
-              <input class="form-control m-2" type="text" placeholder="Description">
-              <input class="form-control m-2" type="text" placeholder="Image Url">
-              <input class="form-control m-2" type="checkbox">
+              <input class="form-control m-2" type="text" placeholder="Name" v-model="keepFormData.name">
+              <input class="form-control m-2" type="text" placeholder="Description" v-model="keepFormData.description">
+              <input class="form-control m-2" type="text" placeholder="Image Url" v-model="keepFormData.img">
+              <input class="form-control m-2" type="checkbox" v-model="keepFormData.isPrivate">
               <p class="text-warning">Keep For Yourself</p>
-
-              <!-- <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-              <label class="form-check-label" for="defaultCheck1">
-              </label> -->
-
-              <button type="button" @click="showForm()" class="btn btn-primary m-3">Create</button>
+              <button type="button" @click="createKeep('keepFormData')" class="btn btn-primary m-3">Create</button>
               <button type="button" @click="showForm()" class="btn btn-danger m-3">Close</button>
-
-
             </div>
           </form>
         </div>
@@ -119,7 +111,9 @@
         keepForm: false,
         vaultForm: false,
         yourKeeps: false,
-        yourVaults: false
+        yourVaults: false,
+        keepFormData: {},
+        vaultFormData: {}
       }
     },
     computed: {
@@ -162,6 +156,20 @@
       },
       getVaultByUser() {
         this.$store.dispatch('getVaultsByUser')
+      },
+      createKeep() {
+
+        // this.keepFormData.name = this.formData.Name
+        // this.keepFormData.description = this.formData.description
+        // this.keepFormData.img = this.formData.img
+        // this.keepFormData.isPrivate = this.formData.isPrivate
+        this.$store.dispatch('createKeep', this.keepFormData)
+        this.formData = {
+          name: '',
+          description: '',
+          img: '',
+          isPrivate: 0
+        }
       }
 
 

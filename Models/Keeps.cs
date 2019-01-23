@@ -8,7 +8,6 @@ namespace keepr.Models
 
   public class Keep
   {
-    [Required]
     public int Id { get; set; }
 
     [Required]
@@ -18,7 +17,6 @@ namespace keepr.Models
 
     public bool IsPrivate { get; set; }
 
-    [Required]
     public string UserId { get; set; }
 
     public int Views { get; set; }

@@ -101,6 +101,27 @@ export default new Vuex.Store({
         })
         .catch(e => console.error(e))
     },
+    createKeep({ commit, dispatch }, formData) {
+      api.post('Keeps', formData)
+        .then(res => {
+          console.log(res.data)
+          commit("setKeep", res.data)
+          dispatch('getKeepsByUser')
+        })
+    },
+
+
+
+
+
+
+
+
+
+
+    // Vault routes
+
+
     getVaultsByUser({ commit, dispatch }) {
 
       api.get("vaults")
