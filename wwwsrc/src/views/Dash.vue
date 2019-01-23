@@ -33,7 +33,7 @@
 
     <!-- forms for the new keep and vault -->
 
-    <!-- form for keep -->
+    <!-- form for new keep -->
     <row>
       <div class="col">
         <div v-if="vaultForm" class="vaultform">
@@ -81,6 +81,9 @@
                 <i class="fas fa-share icons"></i>: {{keep.shares}}
                 <i class="fas fa-dungeon icons"></i>: {{keep.keeps}}
               </div>
+              <div>
+                <i class="fas fa-bomb" @click="deleteKeep(keep.id)"></i>
+              </div>
             </div>
           </div>
         </div>
@@ -93,6 +96,9 @@
               <div class="card-body">
                 <h3 class="card-title">{{vault.name}}</h3>
                 <p class="card-text">{{vault.description}}</p>
+              </div>
+              <div>
+                <i class="fas fa-bomb"></i>
               </div>
             </div>
           </div>
@@ -172,6 +178,9 @@
           name: '',
           description: ''
         }
+      },
+      deleteKeep(keepId) {
+        this.$store.dispatch('deleteKeep', keepId)
       }
 
 

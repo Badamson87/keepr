@@ -77,8 +77,7 @@ namespace keepr.Repositories
 
     public bool DeleteKeep(string UserId, int id)
     {
-
-      _db.Execute("Delete FROM Keep WHERE ID = @Id AND UserId = @UserId", new { ID = id, UserId });
+      _db.Execute("Delete FROM Keeps WHERE ID = @Id AND UserId = @UserId", new { ID = id, UserId });
       return true;
     }
 
