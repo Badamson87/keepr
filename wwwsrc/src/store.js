@@ -82,7 +82,6 @@ export default new Vuex.Store({
     getAllKeeps({ commit, dispatch }) {
       api.get('keeps/')
         .then(res => {
-          console.log(res)
           commit('setKeeps', res.data)
         })
     },
@@ -96,7 +95,6 @@ export default new Vuex.Store({
     getKeepsByUser({ commit, dispatch }) {
       api.get("keeps/all")
         .then(res => {
-          console.log(res.data)
           commit('setUserKeeps', res.data)
         })
         .catch(e => console.error(e))
@@ -104,15 +102,10 @@ export default new Vuex.Store({
     createKeep({ commit, dispatch }, formData) {
       api.post('Keeps', formData)
         .then(res => {
-          console.log(res.data)
           commit("setKeep", res.data)
           dispatch('getKeepsByUser')
         })
     },
-
-
-
-
 
 
 
@@ -126,10 +119,17 @@ export default new Vuex.Store({
 
       api.get("vaults")
         .then(res => {
-          console.log(res.data)
           commit('setUserVaults', res.data)
         })
         .catch(e => console.error(e))
+    },
+    createVault({ commit, dispatch }, formData) {
+      api.post('vaults', formData)
+        .then(res => {
+          console.log(res.data)
+          commit('setVaults', res.data)
+          dispatch('getVaultsByUser')
+        })
     }
 
 

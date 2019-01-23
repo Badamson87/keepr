@@ -42,7 +42,7 @@
             <div class="form-group">
               <input class="form-control" type="text" placeholder="Name" v-model="vaultFormData.name">
               <input class="form-control" type="text" placeholder="Description" v-model="vaultFormData.description">
-              <button type="button" @click="showForm()" class="btn btn-primary m-3">Create</button>
+              <button type="button" @click="createVault('vaultFormData')" class="btn btn-primary m-3">Create</button>
               <button type="button" @click="showForm()" class="btn btn-danger m-3">Close</button>
             </div>
           </form>
@@ -158,17 +158,19 @@
         this.$store.dispatch('getVaultsByUser')
       },
       createKeep() {
-
-        // this.keepFormData.name = this.formData.Name
-        // this.keepFormData.description = this.formData.description
-        // this.keepFormData.img = this.formData.img
-        // this.keepFormData.isPrivate = this.formData.isPrivate
         this.$store.dispatch('createKeep', this.keepFormData)
-        this.formData = {
+        this.keepFormData = {
           name: '',
           description: '',
           img: '',
           isPrivate: 0
+        }
+      },
+      createVault() {
+        this.$store.dispatch('createVault', this.vaultFormData)
+        this.vaultFormData = {
+          name: '',
+          description: ''
         }
       }
 
