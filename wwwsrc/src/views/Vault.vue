@@ -21,9 +21,26 @@
   export default {
     name: "vault",
     mounted() {
-
-
-
+      this.$store.dispatch('getVaultKeep', this.$store.state.activeVault.id)
     },
+    computed: {
+      activeVault() {
+        return this.$store.state.activeVault
+      },
+      vaultKeeps() {
+        return this.$store.State.vaultKeeps
+      },
+      methods: {
+        // getVaultKeep() {
+        //   debugger
+        //   this.$store.dispatch('getVaultKeeps', id)
+        // }
+
+
+
+      }
+
+
+    }
   };
 </script>

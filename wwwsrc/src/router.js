@@ -43,5 +43,9 @@ export default new Router({
       name: 'vault',
       component: Vault
     },
+    {
+      path: '/logout',
+      name: 'logout'
+    },
   ]
 })

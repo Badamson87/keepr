@@ -23,6 +23,9 @@
             <li class="nav-item">
               <a class="nav-link" href="#/login">login</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#/logout">logout</a>
+            </li>
           </ul>
           <span class="navbar-text">
             <p>Finders Keepers</p>
@@ -33,6 +36,8 @@
     <router-view />
   </div>
 </template>
+
+
 
 <style>
   #app {
