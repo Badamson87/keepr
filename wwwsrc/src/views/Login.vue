@@ -1,17 +1,17 @@
 <template>
-    <div class="login">
+    <div class="login mt-5">
         <form v-if="loginForm" @submit.prevent="loginUser">
             <input type="email" v-model="creds.email" placeholder="email">
             <input type="password" v-model="creds.password" placeholder="password">
-            <button type="submit">Login</button>
+            <button class="btn btn-danger" type="submit">Login</button>
         </form>
         <form v-else @submit.prevent="register">
             <input type="text" v-model="newUser.username" placeholder="name">
             <input type="email" v-model="newUser.email" placeholder="email">
             <input type="password" v-model="newUser.password" placeholder="password">
-            <button type="submit">Create Account</button>
+            <button class="btn btn-danger" btn-typetype="submit text-warning">Create Account</button>
         </form>
-        <div @click="loginForm = !loginForm">
+        <div @click="loginForm = !loginForm" class="text-warning">
             <p v-if="loginForm">No account Click to Register</p>
             <p v-else>Already have an account click to Login</p>
         </div>

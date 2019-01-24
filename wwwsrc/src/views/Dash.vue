@@ -5,7 +5,7 @@
 
     <div class="row">
       <div class="col">
-        <h1 Class="justify-content-center pt-3 text-warning">WELCOME TO YOUR USER DASH</h1>
+        <h1 Class="justify-content-center pt-3 text-warning">Welcome you who has no name {{user.username}}</h1>
       </div>
     </div>
 
@@ -14,18 +14,18 @@
     <div class="row">
       <div class="col-6">
         <h4 class="text-warning m-3">Keeps</h4>
-        <img @click="showData('keep'), getKeepsByUser()" src="../assets/img/treasure2.jpg">
+        <img class="action" @click="showData('keep'), getKeepsByUser()" src="../assets/img/treasure2.jpg">
         <div>
-          <button type="button" class="btn btn-outline-warning" @click="showForm('keep')">New Keep</button>
+          <button type="button" class="btn btn-outline-warning m-4" @click="showForm('keep')">New Keep</button>
         </div>
       </div>
       <div>
       </div>
       <div class="col-6">
         <h4 class="text-warning m-3">Vaults</h4>
-        <img @click="showData('vault'), getVaultByUser()" src="../assets/img/door1.jpg">
+        <img class="action" @click="showData('vault'), getVaultByUser()" src="../assets/img/door1.jpg">
         <div>
-          <button type="button" class="btn btn-outline-warning" @click="showForm('vault')">New Vault</button>
+          <button type="button" class="btn btn-outline-warning m-3" @click="showForm('vault')">New Vault</button>
         </div>
       </div>
     </div>
@@ -37,9 +37,10 @@
     <row>
       <div class="col">
         <div v-if="vaultForm" class="vaultform">
-          <h3 class="text-warning">Build Your Vault</h3>
+          <h3 class="text-warning" v-if="user.username">Build Your Vault</h3>
+          <h3 class="text-warning" v-if="!user.username">You Must Login first</h3>
           <form>
-            <div class="form-group">
+            <div class="form-group" v-if="user.username">
               <input class="form-control" type="text" placeholder="Name" v-model="vaultFormData.name">
               <input class="form-control" type="text" placeholder="Description" v-model="vaultFormData.description">
               <button type="button" @click="createVault('vaultFormData')" class="btn btn-primary m-3">Create</button>
@@ -51,9 +52,10 @@
         <!-- form for new vault -->
 
         <div v-if="keepForm" class="keepform">
-          <h3 class="text-warning">Build Your Keep</h3>
+          <h3 class="text-warning" v-if="user.username">Build Your Keep</h3>
+          <h3 class="text-warning" v-if="!user.username">You Must Login first</h3>
           <form @submit.prevent="createKeep">
-            <div class="form-group">
+            <div class="form-group" v-if="user.username">
               <input class="form-control m-2" type="text" placeholder="Name" v-model="keepFormData.name">
               <input class="form-control m-2" type="text" placeholder="Description" v-model="keepFormData.description">
               <input class="form-control m-2" type="text" placeholder="Image Url" v-model="keepFormData.img">
@@ -128,6 +130,9 @@
       },
       userVaults() {
         return this.$store.state.userVaults
+      },
+      user() {
+        return this.$store.state.user
       }
     },
 
@@ -205,5 +210,9 @@
   .card {
     color: gold;
     background-color: black;
+  }
+
+  .action {
+    cursor: pointer;
   }
 </style>

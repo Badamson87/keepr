@@ -21,15 +21,13 @@
               <a class="nav-link" href="#/dash">DashBoard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#/login">login</a>
+              <a class="nav-link" href="#/login" v-if="!active">login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" @click="logout" href="#/logout">logout</a>
+              <a class="nav-link" @click="logout" href="/logout" v-if="active">logout</a>
             </li>
           </ul>
-          <span class="navbar-text">
-            <p>Finders Keepers</p>
-          </span>
+
         </div>
       </nav>
     </div>
@@ -40,6 +38,13 @@
 <script>
   export default {
     name: "app",
+
+    computed: {
+      active() {
+        return this.$store.state.user.active
+
+      }
+    },
 
     methods: {
       logout() {
