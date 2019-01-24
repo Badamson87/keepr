@@ -23,12 +23,21 @@
           <i class="fas fa-dungeon icons text-warning"></i>
           <p class="text-warning icons">: {{activeKeep.keeps}}</p>
         </div>
+        <div class="dropdown">
+          <button class="btn btn-sm dropdown-toggle icon" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false"> Keep It
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <p class="dropdown-item action" v-for="vault in vaults" @click="addToVault(vault.id)" v-bind:value="vaults.id">{{vault.name}}</p>
+          </div>
+        </div>
         <div>
           <h3 class="text-warning m-3">{{activeKeep.name}}</h3>
         </div>
         <div>
           <p class="text-warning">{{activeKeep.description}}</p>
         </div>
+
       </div>
     </div>
 
@@ -41,9 +50,24 @@
     computed: {
       activeKeep() {
         return this.$store.state.activeKeep
-
+      },
+      vaults() {
+        return this.$store.state.userVaults
+      },
+    },
+    mounted() {
+      this.$store.dispatch('getVaultsByUser')
+    },
+    methods: {
+      addToVault(vaultId) {
+        let payload = {
+          keepId: this.activeKeep.id,
+          vaultId: vaultId,
+        }
+        this.$store.dispatch('addVaultKeep', payload)
       }
     }
+
   };
 </script>
 

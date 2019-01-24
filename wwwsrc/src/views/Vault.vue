@@ -28,7 +28,8 @@
         return this.$store.state.activeVault
       },
       vaultKeeps() {
-        return this.$store.State.vaultKeeps
+        debugger
+        return this.$store.state.vaultKeeps
       },
       methods: {
         // getVaultKeep() {
