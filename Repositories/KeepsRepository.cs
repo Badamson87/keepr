@@ -40,10 +40,10 @@ namespace keepr.Repositories
         return _db.QueryFirstOrDefault<Keep>($@"
       UPDATE Keeps 
       SET
-        Views = @Views,
-        Shares = @Shares,
-        Keeps = @Keeps
-      WHERE Id = {id};
+        views = @Views,
+        shares = @Shares,
+        keeps = @Keeps
+      WHERE id = {id};
       SELECT * FROM Keeps WHERE Id = {id};", newKeep);
       }
       catch (Exception ex)

@@ -18,7 +18,7 @@
                 <p class="card-text">{{keep.name}}</p>
               </router-link>
               <i class="fas fa-eye icons"></i>: {{keep.views}}
-              <i class="fas fa-share icons"></i>: {{keep.shares}}
+              <i class="fas fa-share icons" @click="updateKeepShares()"></i>: {{keep.shares}}
               <i class="fas fa-dungeon icons"></i>: {{keep.keeps}}
             </div>
           </div>
@@ -42,6 +42,15 @@
     methods: {
       setActiveKeep(keep) {
         this.$store.commit('setActiveKeep', keep)
+      },
+      updateKeepShares() {
+        let payload = {
+          keepId: this.$store.state.activeKeep.id,
+          views: this.$store.state.activeKeep.views,
+          shares: this.$store.state.activeKeep.shares += 1,
+          keeps: this.$store.state.activeKeep.keeps
+        }
+        this.$store.dispatch('updateKeep', payload)
       }
     }
 

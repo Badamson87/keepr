@@ -19,7 +19,7 @@
           <i class="fas fa-eye icons text-warning"></i>
           <p class="text-warning icons mr-5">: {{activeKeep.views}}</p>
           <i class="fas fa-share icons text-warning"></i>
-          <p class="text-warning icons mr-5">: {{activeKeep.shares}}</p>
+          <p class="text-warning icons mr-5" @click="updateKeepShares()">: {{activeKeep.shares}}</p>
           <i class="fas fa-dungeon icons text-warning"></i>
           <p class="text-warning icons">: {{activeKeep.keeps}}</p>
         </div>
@@ -57,6 +57,14 @@
     },
     mounted() {
       this.$store.dispatch('getVaultsByUser')
+      let payload = {
+        keepId: this.$store.state.activeKeep.id,
+        views: this.$store.state.activeKeep.views += 1,
+        shares: this.$store.state.activeKeep.shares,
+        keeps: this.$store.state.activeKeep.keeps
+
+      }
+      this.$store.dispatch('updateKeep', payload)
     },
     methods: {
       addToVault(vaultId) {
@@ -65,6 +73,15 @@
           vaultId: vaultId,
         }
         this.$store.dispatch('addVaultKeep', payload)
+      },
+      updateKeepShares() {
+        let payload = {
+          keepId: this.$store.state.activeKeep.id,
+          views: this.$store.state.activeKeep.views,
+          shares: this.$store.state.activeKeep.shares += 1,
+          keeps: this.$store.state.activeKeep.keeps
+        }
+        this.$store.dispatch('updateKeep', payload)
       }
     }
 

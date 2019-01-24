@@ -131,6 +131,12 @@ export default new Vuex.Store({
         })
         .catch(e => console.error(e))
     },
+    updateKeep({ commit, dispatch }, payload) {
+      api.put('keeps/' + payload.keepId, payload)
+        .then(res => {
+          console.log(res)
+        })
+    },
 
 
     // Vault routes
