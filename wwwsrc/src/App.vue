@@ -18,7 +18,7 @@
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#/dash">User</a>
+              <a class="nav-link" href="#/dash">DashBoard</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#/login">login</a>

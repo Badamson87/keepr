@@ -9,12 +9,29 @@
     </div>
 
     <!-- Vaults here im thinking -->
+
     <div class="row">
-
-
+      <div class="col allKeeps">
+        <div v-for="keep in vaultKeeps">
+          <div class="card m-2" style="width: 14rem;">
+            <img class="card-img-top" :src="keep.img">
+            <div class="card-body" @click="setActiveKeep(keep)">
+              <router-link :to="{name: 'keep', params: {keepId: keep.id}}">
+                <p class="card-text">{{keep.name}}</p>
+              </router-link>
+              <i class="fas fa-eye icons"></i>: {{keep.views}}
+              <i class="fas fa-share icons"></i>: {{keep.shares}}
+              <i class="fas fa-dungeon icons"></i>: {{keep.keeps}}
+            </div>
+            <div>
+              <i class="fas fa-bomb" @click="removeKeepFromVault(keep.id)"></i>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
   </div>
+
 </template>
 
 <script>
@@ -28,18 +45,27 @@
         return this.$store.state.activeVault
       },
       vaultKeeps() {
-        debugger
         return this.$store.state.vaultKeeps
       },
-      methods: {
-        // getVaultKeep() {
-        //   debugger
-        //   this.$store.dispatch('getVaultKeeps', id)
-        // }
 
 
 
+    },
+    methods: {
+      getVaultKeep() {
+        this.$store.dispatch('getVaultKeeps', id)
+      },
+      removeKeepFromVault(keepId) {
+        let payload = {
+          keepId: keepId,
+          vaultId: this.$store.state.activeVault.id
+        }
+        this.$store.dispatch('removeVaultKeep', payload)
+      },
+      setActiveKeep(keep) {
+        this.$store.commit('setActiveKeep', keep)
       }
+
 
 
     }

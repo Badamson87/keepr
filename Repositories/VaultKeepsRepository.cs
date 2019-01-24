@@ -35,9 +35,9 @@ namespace keepr.Repositories
 
     // Delete a keep by vault id
 
-    public bool DeleteVaultKeeps(string userId, int id)
+    public bool DeleteVaultKeeps(VaultKeeps payload)
     {
-      _db.Execute("DELETE FROM vaultkeeps WHERE id = @Id AND userId = @UserId", new { userId, id, });
+      _db.Execute("DELETE FROM vaultKeeps WHERE keepId = @KeepId AND vaultId = @VaultId AND userId = @UserId", payload);
       return true;
     }
 
@@ -46,7 +46,11 @@ namespace keepr.Repositories
 
     public IEnumerable<Keep> GetAllKeepsByVaultId(string userId, int vaultId)
     {
-      return _db.Query<Keep>($"SELECT * FROM vaultkeeps WHERE vaultId = @vaultId  AND userId = @userId", new { userId, vaultId });
+      return _db.Query<Keep>($@"
+      SELECT * FROM vaultkeeps vk
+      INNER JOIN keeps k ON k.id = vk.keepId 
+      WHERE (vaultId = @vaultId AND vk.userId = @userId) 
+      ", new { userId, vaultId });
     }
 
 

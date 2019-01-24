@@ -41,24 +41,19 @@ namespace Keepr.Controllers
 
     // Delete a vaultKeep
     [Authorize]
-    [HttpDelete("{id}")]
+    [HttpPut]
 
-    public ActionResult<VaultKeeps> Delete(int id)
+    public ActionResult<VaultKeeps> Delete([FromBody] VaultKeeps payload)
     {
       string userId = HttpContext.User.Identity.Name;
-      if (_vkRepo.DeleteVaultKeeps(userId, id))
+      payload.UserId = userId;
+      if (_vkRepo.DeleteVaultKeeps(payload))
       {
         return Ok("success");
       }
       return NotFound("No Keep FOund");
 
     }
-
-
-
-
-
-
 
     // get Keeps by vault id
     [Authorize]
