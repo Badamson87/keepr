@@ -86,9 +86,9 @@ export default new Vuex.Store({
         })
     },
     logout({ commit, dispatch }) {
-      auth.delete('logout')
+      auth.delete('/logout')
         .then(res => {
-          commit('logout')
+          commit('setUser', {})
         })
     },
 

@@ -24,7 +24,7 @@
               <a class="nav-link" href="#/login">login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#/logout">logout</a>
+              <a class="nav-link" @click="logout" href="#/logout">logout</a>
             </li>
           </ul>
           <span class="navbar-text">
@@ -36,6 +36,19 @@
     <router-view />
   </div>
 </template>
+
+<script>
+  export default {
+    name: "app",
+
+    methods: {
+      logout() {
+        this.$store.dispatch("logout")
+      }
+    }
+  }
+
+</script>
 
 
 
