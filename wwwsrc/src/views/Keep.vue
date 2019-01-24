@@ -28,7 +28,8 @@
             aria-haspopup="true" aria-expanded="false"> Keep It
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <p class="dropdown-item action" v-for="vault in vaults" @click="addToVault(vault.id)" v-bind:value="vaults.id">{{vault.name}}</p>
+            <p class="dropdown-item action" v-for="vault in vaults" @click="addToVault(vault.id), updateVaultsNumber()"
+              v-bind:value="vaults.id">{{vault.name}}</p>
           </div>
         </div>
         <div>
@@ -80,6 +81,15 @@
           views: this.$store.state.activeKeep.views,
           shares: this.$store.state.activeKeep.shares += 1,
           keeps: this.$store.state.activeKeep.keeps
+        }
+        this.$store.dispatch('updateKeep', payload)
+      },
+      updateVaultsNumber() {
+        let payload = {
+          keepId: this.$store.state.activeKeep.id,
+          views: this.$store.state.activeKeep.views,
+          shares: this.$store.state.activeKeep.shares,
+          keeps: this.$store.state.activeKeep.keeps += 1
         }
         this.$store.dispatch('updateKeep', payload)
       }
