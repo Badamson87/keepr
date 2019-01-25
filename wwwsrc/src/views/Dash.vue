@@ -5,7 +5,7 @@
 
     <div class="row">
       <div class="col">
-        <h1 Class="justify-content-center pt-3 text-warning">Welcome you who has no name {{user.username}}</h1>
+        <h1 Class="justify-content-center pt-3 text-warning">Welcome {{user.username}}</h1>
       </div>
     </div>
 
